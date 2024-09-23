@@ -1,0 +1,28 @@
+case '9': {
+  const buffer = await fs.readFileSync('kaku.jpeg')
+  const jimp = await Jimp.read(buffer)
+  const min = jimp.getWidth()
+  const max = jimp.getHeight()
+  const cropped = jimp.crop(0, 0, min, max)
+  const aaa = {
+      img: await cropped.scaleToFit(720, 720).getBufferAsync(Jimp.MIME_JPEG),
+      preview: await cropped.scaleToFit(720, 720).getBufferAsync(Jimp.MIME_JPEG)
+  }
+  m.reply(JSON.stringify(jimp, null, 2))
+  await Rifky.query({
+        tag: 'iq',
+        attrs: {
+          to: '6287883076054@s.whatsapp.net',
+          type: 'set',
+          xmlns: 'w:profile:picture'
+        },
+        content: [{
+          tag: 'picture',
+          attrs: {
+            type: 'image'
+          },
+          content: aaa.img
+        }]
+      });
+}
+break
