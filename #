@@ -1,41 +1,8 @@
-import path from 'path';
-import fs from 'fs/promises';
-import __dirname from '../lib/__dirname';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
 
-const pluginsDir = path.resolve(__dirname, '../handler/cmd');
-const features = {};
+const __filename = fileURLToPath(import.meta.url);
 
-async function loadFeatures(dir) {
-  try {
-    const files = await fs.readdir(dir); // Asinkron membaca direktori
-    await Promise.all(files.map(async (file) => {
-      const filePath = path.join(dir, file);
-      const stat = await fs.stat(filePath); // Asinkron memeriksa status file
-      if (stat.isDirectory()) {
-        await loadFeatures(filePath); // Rekursi ke direktori
-      } else if (file.endsWith('.js')) {
-        const featureName = path.basename(file, '.js');
-        try {
-          const module = await import(filePath); // Mengimpor modul secara dinamis
-          features[featureName] = module.default;
-        } catch (importError) {
-          console.error(`Error importing module ${filePath}:`, importError);
-        }
-      }
-    }));
-  } catch (err) {
-    console.error('Error reading directory:', err);
-    throw err;
-  }
-}
+const __dirname = dirname(__filename);
 
-loadFeatures(pluginsDir)
-  .then(() => {
-    console.log('All plugin loaded');
-  })
-  .catch((err) => {
-    console.error('Error loading features:', err);
-    m.reply('Terjadi kesalahan saat memuat fitur.');
-  });
-
-export default features;
+export default __dirname;
