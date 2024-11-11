@@ -1,28 +1,41 @@
-case '9': {
-  const buffer = await fs.readFileSync('kaku.jpeg')
-  const jimp = await Jimp.read(buffer)
-  const min = jimp.getWidth()
-  const max = jimp.getHeight()
-  const cropped = jimp.crop(0, 0, min, max)
-  const aaa = {
-      img: await cropped.scaleToFit(720, 720).getBufferAsync(Jimp.MIME_JPEG),
-      preview: await cropped.scaleToFit(720, 720).getBufferAsync(Jimp.MIME_JPEG)
+import path from 'path';
+import fs from 'fs/promises';
+import __dirname from '../lib/__dirname';
+
+const pluginsDir = path.resolve(__dirname, '../handler/cmd');
+const features = {};
+
+async function loadFeatures(dir) {
+  try {
+    const files = await fs.readdir(dir); // Asinkron membaca direktori
+    await Promise.all(files.map(async (file) => {
+      const filePath = path.join(dir, file);
+      const stat = await fs.stat(filePath); // Asinkron memeriksa status file
+      if (stat.isDirectory()) {
+        await loadFeatures(filePath); // Rekursi ke direktori
+      } else if (file.endsWith('.js')) {
+        const featureName = path.basename(file, '.js');
+        try {
+          const module = await import(filePath); // Mengimpor modul secara dinamis
+          features[featureName] = module.default;
+        } catch (importError) {
+          console.error(`Error importing module ${filePath}:`, importError);
+        }
+      }
+    }));
+  } catch (err) {
+    console.error('Error reading directory:', err);
+    throw err;
   }
-  m.reply(JSON.stringify(jimp, null, 2))
-  await Rifky.query({
-        tag: 'iq',
-        attrs: {
-          to: '6287883076054@s.whatsapp.net',
-          type: 'set',
-          xmlns: 'w:profile:picture'
-        },
-        content: [{
-          tag: 'picture',
-          attrs: {
-            type: 'image'
-          },
-          content: aaa.img
-        }]
-      });
 }
-break
+
+loadFeatures(pluginsDir)
+  .then(() => {
+    console.log('All plugin loaded');
+  })
+  .catch((err) => {
+    console.error('Error loading features:', err);
+    m.reply('Terjadi kesalahan saat memuat fitur.');
+  });
+
+export default features;
