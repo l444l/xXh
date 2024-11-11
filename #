@@ -1,10 +1,10 @@
-for (const [featureName, feature] of Object.entries(features)) {
-  if(feature.triggers?.includes(isCommand)) {
-    try {
-      await feature.handle(KNTL, kntl, m, text, command, isCommand);
-      break;
-    } catch (error) {
-      console.error(`Error handling command with feature ${featureName}:`, error);
-    }
-  }
-}
+
+export const error = async (KNTL, kntl, m, text, command, isCommand) => {
+  m.reply('👍🏾');
+};
+
+export default {
+  test: ["99"],
+  handle: error
+};
+  
