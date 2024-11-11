@@ -1,8 +1,10 @@
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = dirname(__filename);
-
-export default __dirname;
+for (const [featureName, feature] of Object.entries(features)) {
+  if(feature.triggers?.includes(isCommand)) {
+    try {
+      await feature.handle(KNTL, kntl, m, text, command, isCommand);
+      break;
+    } catch (error) {
+      console.error(`Error handling command with feature ${featureName}:`, error);
+    }
+  }
+}
