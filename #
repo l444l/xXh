@@ -1,51 +1,28 @@
-CREATE TABLE barang (
-    id_barang INT PRIMARY KEY auto_increment,
-    nama_barang VARCHAR(50),
-    id_kategori int, 
-    harga INT,
-    stok INT,
-    tanggal_masuk DATE
-);
+1.	Buatlah sebuah database dengan nama hotel_skorsa! 
+2.	Buatlah tiga tabel berikut dalam database hotel_management:
+Tabel kamar dengan kolom id_kamar (INT, Primary Key), tipe_kamar (VARCHAR), harga_per_malam (INT).
 
-INSERT INTO barang (nama_barang, id_kategori, harga, stok, tanggal_masuk) VALUES
-('Pensil', 1, 2000, 100, '2024-11-01'),
-('Buku Tulis', 1, 5000, 200, '2024-11-01'),
-('Penghapus', 1, 1000, 150, '2024-11-01'),
-('Penggaris', 1, 3000, 75, '2024-11-01'),
-( 'Stapler', 2, 15000, 50, '2024-11-02'),
-('Kertas A4', 2, 50000, 200, '2024-11-02'),
-('Lem Kertas', 4, 3000, 80, '2024-11-03'),
-('Map Plastik', 3, 2000, 90, '2024-11-03'),
-('Whiteboard Marker', 4, 7000, 60, '2024-11-03');
+Tabel tamu dengan kolom id_tamu (INT, Primary Key), nama_tamu (VARCHAR), email (VARCHAR).
 
-CREATE TABLE pelanggan (
-    id_pelanggan INT PRIMARY KEY AUTO_INCREMENT,
-    nama_pelanggan VARCHAR(100),
-    alamat VARCHAR(255),
-    telepon VARCHAR(15),
-    email VARCHAR(100),
-    tanggal_daftar DATE
-);
+Tabel reservasi dengan kolom id_reservasi (INT, Primary Key), id_tamu (INT, Foreign Key), id_kamar (INT, Foreign Key), tanggal_check_in (DATE), tanggal_check_out (DATE), jumlah_malam (INT). 
 
-INSERT INTO pelanggan (nama_pelanggan, alamat, telepon, email, tanggal_daftar) VALUES
-('Andi Setiawan', 'Jl. Merdeka No. 123, Jakarta', '081234567890', 'andi@example.com', '2024-11-01'),
-('Budi Santoso', 'Jl. Pahlawan No. 45, Bandung', '082345678901', 'budi@example.com', '2024-11-02'),
-('Citra Dewi', 'Jl. Raya No. 78, Surabaya', '083456789012', 'citra@example.com', '2024-11-03'),
-('Dewi Anggraini', 'Jl. Suka No. 9, Yogyakarta', '084567890123', 'dewi@example.com', '2024-11-04'),
-('Eko Prasetyo', 'Jl. Sejahtera No. 21, Medan', '085678901234', 'eko@example.com', '2024-11-05');
+3.	Masukkan data ke dalam tabel kamar, tamu, dan reservasi sebagai berikut:
+Tabel kamar:
+id_kamar = 101, tipe_kamar = "Single", harga_per_malam = 500000
+id_kamar = 102, tipe_kamar = "Double", harga_per_malam = 800000
 
-CREATE TABLE pembelian (
-    id_pembelian INT primary key auto_increment, 
-    id_barang INT,
-    jumlah INT,
-    total_harga INT,
-    FOREIGN KEY (id_barang) REFERENCES barang(id_barang)
-);
+Tabel tamu:
+id_tamu = 1, nama_tamu = "Andi", email = "andi@example.com"
+id_tamu = 2, nama_tamu = "Budi", email = "budi@example.com"
 
-INSERT INTO pembelian (id_barang, jumlah, total_harga) VALUES
-(1, 10, 20000),
-(2, 5, 25000),
-(3, 15, 15000),
-(4, 7, 21000),
-(5, 3, 45000),
-(6, 10, 500000);
+Tabel reservasi:
+id_reservasi = 1, id_tamu = 1, id_kamar = 101, tanggal_check_in = '2024-11-01', tanggal_check_out = '2024-11-05', jumlah_malam = 4
+id_reservasi = 2, id_tamu = 2, id_kamar = 102, tanggal_check_in = '2024-11-03', tanggal_check_out = '2024-11-06', jumlah_malam = 3
+
+4.	Tampilkan nama tamu, tipe kamar, jumlah malam yang dipesan, dan total biaya (harga_per_malam * jumlah_malam) untuk setiap reservasi yang dilakukan.
+
+5.	Tampilkan nama tamu dan tipe kamar hanya untuk tamu yang memesan kamar dengan harga lebih dari 600000 per malam.
+
+6.	Tampilkan nama tamu, tipe kamar, dan total biaya untuk tamu yang memesan lebih dari 2 malam dan harga kamar lebih dari 600000.
+
+7.	Hitung total pendapatan yang diperoleh dari seluruh reservasi berdasarkan harga kamar per malam dan jumlah malam yang dipesan.
