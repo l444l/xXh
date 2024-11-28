@@ -1,28 +1,42 @@
-1.	Buatlah sebuah database dengan nama hotel_skorsa! 
-2.	Buatlah tiga tabel berikut dalam database hotel_management:
-Tabel kamar dengan kolom id_kamar (INT, Primary Key), tipe_kamar (VARCHAR), harga_per_malam (INT).
+CREATE DATABASE perusahaan;
+USE perusahaan;
 
-Tabel tamu dengan kolom id_tamu (INT, Primary Key), nama_tamu (VARCHAR), email (VARCHAR).
+CREATE TABLE pegawai (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    gaji DECIMAL(10, 2) NOT NULL
+);
 
-Tabel reservasi dengan kolom id_reservasi (INT, Primary Key), id_tamu (INT, Foreign Key), id_kamar (INT, Foreign Key), tanggal_check_in (DATE), tanggal_check_out (DATE), jumlah_malam (INT). 
+CREATE TABLE karyawan (
+    id_karyawan INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL
+);
 
-3.	Masukkan data ke dalam tabel kamar, tamu, dan reservasi sebagai berikut:
-Tabel kamar:
-id_kamar = 101, tipe_kamar = "Single", harga_per_malam = 500000
-id_kamar = 102, tipe_kamar = "Double", harga_per_malam = 800000
+CREATE TABLE gaji (
+    id_gaji INT AUTO_INCREMENT PRIMARY KEY,
+    id_karyawan INT,
+    gaji DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (id_karyawan) REFERENCES karyawan(id_karyawan)
+);
+Menambah Data ke Tabel pegawai
+INSERT INTO pegawai (nama, gaji) VALUES
+('Andi', 5000),
+('Budi', 6000),
+('Chandra', 4000),
+('Diana', 7000);
+Menambah Data ke Tabel karyawan
+sql
+Salin kode
+INSERT INTO karyawan (nama) VALUES
+('Andi'),
+('Budi');
+Menambah Data ke Tabel gaji
+sql
+Salin kode
+INSERT INTO gaji (id_karyawan, gaji) VALUES
+(1, 5000),
+(2, 6000);
 
-Tabel tamu:
-id_tamu = 1, nama_tamu = "Andi", email = "andi@example.com"
-id_tamu = 2, nama_tamu = "Budi", email = "budi@example.com"
-
-Tabel reservasi:
-id_reservasi = 1, id_tamu = 1, id_kamar = 101, tanggal_check_in = '2024-11-01', tanggal_check_out = '2024-11-05', jumlah_malam = 4
-id_reservasi = 2, id_tamu = 2, id_kamar = 102, tanggal_check_in = '2024-11-03', tanggal_check_out = '2024-11-06', jumlah_malam = 3
-
-4.	Tampilkan nama tamu, tipe kamar, jumlah malam yang dipesan, dan total biaya (harga_per_malam * jumlah_malam) untuk setiap reservasi yang dilakukan.
-
-5.	Tampilkan nama tamu dan tipe kamar hanya untuk tamu yang memesan kamar dengan harga lebih dari 600000 per malam.
-
-6.	Tampilkan nama tamu, tipe kamar, dan total biaya untuk tamu yang memesan lebih dari 2 malam dan harga kamar lebih dari 600000.
-
-7.	Hitung total pendapatan yang diperoleh dari seluruh reservasi berdasarkan harga kamar per malam dan jumlah malam yang dipesan.
+SELECT * FROM pegawai;
+SELECT * FROM karyawan;
+SELECT * FROM gaji;
