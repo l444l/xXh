@@ -1,42 +1,137 @@
-CREATE DATABASE perusahaan;
-USE perusahaan;
-
-CREATE TABLE pegawai (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nama VARCHAR(100) NOT NULL,
-    gaji DECIMAL(10, 2) NOT NULL
-);
-
-CREATE TABLE karyawan (
-    id_karyawan INT AUTO_INCREMENT PRIMARY KEY,
-    nama VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE gaji (
-    id_gaji INT AUTO_INCREMENT PRIMARY KEY,
-    id_karyawan INT,
-    gaji DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (id_karyawan) REFERENCES karyawan(id_karyawan)
-);
-Menambah Data ke Tabel pegawai
-INSERT INTO pegawai (nama, gaji) VALUES
-('Andi', 5000),
-('Budi', 6000),
-('Chandra', 4000),
-('Diana', 7000);
-Menambah Data ke Tabel karyawan
-sql
-Salin kode
-INSERT INTO karyawan (nama) VALUES
-('Andi'),
-('Budi');
-Menambah Data ke Tabel gaji
-sql
-Salin kode
-INSERT INTO gaji (id_karyawan, gaji) VALUES
-(1, 5000),
-(2, 6000);
-
-SELECT * FROM pegawai;
-SELECT * FROM karyawan;
-SELECT * FROM gaji;
+[2/17, 1:22 PM] yudi kumuloh: <!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<link rel="stylesheet" href="css/class.css">
+<link rel="stylesheet" href="css/halaman.css">
+</head>
+<body>
+<header>
+<h3>Website Kelas XI PPLG 2</h3>
+<h5>Tahun 2024/2025</h5>
+</header>
+<section>
+<nav>
+<ul>
+<li><a href="home.html">Home</a></li>
+<li><a href="berita.html">Berita</a></li>
+<li><a href="struktur.html">Struktur Kelas</a></li>
+<li class="dropdown">
+<a href="#" class="dropbtn">Jadwal Pelajaran</a>
+<div class="dropdown-content">
+<a href="jadwalsenin.html">Senin</a>
+<a href="jadwalselasa.html">Selasa</a>
+<a href="#">Rabu</a>
+<a href="#">Kamis</a>
+<a href="#">Jumat</a>
+</div>
+</li>
+<li class="dropdown">
+<a href="#" class="dropbtn">Jadwal Piket</a>
+<div class="dropdown-content">
+<a href="#">Senin</a>
+<a href="#">Selasa</a>
+<a href="#">Rabu</a>
+<a href="#">Kamis</a>
+<a href="#">Jumat</a>
+</div>
+</li>
+<li><a href="galeri.html">Galery Photo</a></li>
+<li><a href="kontak.html">Contact</a></li>
+</ul>
+</nav>
+<article>
+<h1>Halaman Utama</h1>
+<p>Bukan 4 sehat 5 sepurna,Tapi 4 kosong 5 dua</p>
+<p>Apa ga trima?</p>
+<p>Bewan dekk</p>
+</article>
+</section>
+<footer>
+<p>@SEKORSAABISS</p>
+</footer>
+</body>
+</html>
+[2/17, 1:22 PM] yudi kumuloh: *{
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+header{
+    bacground-color: #26577c;
+   
+   padding: 30px;
+   text-align: center;
+   font-suze: 35px;
+   color: white;
+   border-radius: 10px 10px 0px 0px;
+   
+}
+aarticle {
+    float: left;
+    padding: 20px; 
+    background-color: #F5EFE6;
+    
+}
+section::after {
+    content:"";
+    display: table;
+    clear:both;
+}
+footer {
+    background-color: #26577C;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    border-radius:0px 0px 10px 10px;
+}
+@media (max-width: 600px) {
+    nav, article {
+        width: 100%;
+        height: auto;
+    }
+}
+[2/17, 1:22 PM] yudi kumuloh: ul {
+    list-style-tyoe: none;
+    margin: 0;
+    padding: 0;
+    overlow: hidden;
+    background-color:3 #E8DFCA;
+}
+li {
+    float: left;
+}
+li a, .dropbtn {
+    display: inline-block;
+    color: darkblue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    min-width: 160px;
+}
+li a:hover, .dropdown:hover .dropdtn {
+    background-color: #E55604;
+}
+li.dropdown {
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.drpdown-content a {
+    color: darkblue;
+    padding:12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.content a:hover {background-color: #f1f1f1;}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
