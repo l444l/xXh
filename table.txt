@@ -1,0 +1,72 @@
+-- Create Tabel Guru
+CREATE TABLE Guru (
+    id_guru INT PRIMARY KEY, 
+    nama_guru VARCHAR(100),
+    jenis_kelamin CHAR(1) CHECK (jenis_kelamin IN ('L', 'P')),
+    tanggal_lahir DATE,
+    email VARCHAR(100),
+    no_telepon VARCHAR(15)
+);
+
+-- Create Tabel MataPelajaran
+CREATE TABLE MataPelajaran (
+    id_mapel INT PRIMARY KEY,
+    nama_mapel VARCHAR(100)
+);
+
+-- Create Tabel Kelas
+CREATE TABLE Kelas (
+    id_kelas INT PRIMARY KEY, 
+    nama_kelas VARCHAR(100),
+    tingkat INT,
+    id_wali_kelas INT,
+    FOREIGN KEY (id_wali_kelas) REFERENCES Guru(id_guru)
+);
+
+-- Create Tabel Siswa
+CREATE TABLE Siswa (
+    id_siswa INT PRIMARY KEY, 
+    nama_siswa VARCHAR(100),
+    jenis_kelamin CHAR(1) CHECK (jenis_kelamin IN ('L', 'P')),
+    tanggal_lahir DATE,
+    alamat TEXT,
+    id_kelas INT,
+    FOREIGN KEY (id_kelas) REFERENCES Kelas(id_kelas)
+);
+
+-- Create Tabel Jadwal
+CREATE TABLE Jadwal (
+    id_jadwal INT PRIMARY KEY, 
+    id_kelas INT,
+    id_mapel INT,
+    id_guru INT,
+    hari VARCHAR(20),
+    jam_mulai TIME,
+    jam_selesai TIME,
+    FOREIGN KEY (id_kelas) REFERENCES Kelas(id_kelas),
+    FOREIGN KEY (id_mapel) REFERENCES MataPelajaran(id_mapel),
+    FOREIGN KEY (id_guru) REFERENCES Guru(id_guru)
+);
+
+INSERT INTO Guru (id_guru, nama_guru, jenis_kelamin, tanggal_lahir, email,
+no_telepon) VALUES
+(1, 'Ahmad Fauzi', 'L', '1980-05-15', 'ahmad@sekolah.ac.id', '081234567890'),
+(2, 'Siti Rahma', 'P', '1985-08-22', 'siti@sekolah.ac.id', '081298765432'); 
+
+INSERT INTO Siswa (id_siswa, nama_siswa, jenis_kelamin, tanggal_lahir,
+alamat, id_kelas) VALUES
+(1, 'Budi Santoso', 'L', '2008-04-10', 'Jl. Merdeka No.1', 1),
+(2, 'Ani Lestari', 'P', '2007-09-15', 'Jl. Sudirman No.2', 1); 
+
+INSERT INTO MataPelajaran (id_mapel, nama_mapel) VALUES
+(1, 'Matematika'),
+(2, 'Bahasa Indonesia'); 
+
+INSERT INTO Kelas (id_kelas, nama_kelas, tingkat, id_wali_kelas) VALUES
+(1, 'VII-A', 7, 1),
+(2, 'VII-B', 7, 2); 
+
+INSERT INTO Jadwal (id_jadwal, id_kelas, id_mapel, id_guru, hari, jam_mulai,
+jam_selesai) VALUES
+(1, 1, 1, 1, 'Senin', '07:00:00', '08:30:00'),
+(2, 1, 2, 2, 'Selasa', '09:00:00', '10:30:00');
