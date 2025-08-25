@@ -1,7 +1,43 @@
-fs.watchFile(__filename, () => {
-  fs.unwatchFile(__filename);
-  console.log(chalk.redBright(`Update ${__filename}`));
-  import(`${import.meta.url}?update=${Date.now()}`).then(() => {
-    console.log('Kode diperbarui!');
-  }).catch(err => console.error('Gagal memperbarui:', err));
-});
+import 'package:flutter/material.dart';
+import 'main.dart'; // Import the Doa class
+
+class DoaDetailScreen extends StatelessWidget {
+  final Doa doa;
+
+  DoaDetailScreen({required this.doa});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(doa.title),
+        backgroundColor: Colors.green, // Set AppBar color to green
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                doa.arabic,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                textDirection: TextDirection.rtl, // Ensure Arabic text flows right to left
+              ),
+              SizedBox(height: 20),
+              Text(
+                "Latin: ${doa.latin}",
+                style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+              ),
+              SizedBox(height: 20),
+              Text(
+                "Arti: ${doa.translation}",
+                style: TextStyle(fontSize: 18),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
