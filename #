@@ -1,1 +1,11 @@
-https://gist.githubusercontent.com/dirumahrafif/8345bc5715cfff6bcf5efaf9928d63ff/raw/ebffcfca6936eeb2e0604afbb1f89985eef95acd/app.blade.php
+Hari ini masih lanjut latihan UKK ya. 
+Jika tabel siswa dan coding siswa sudah selesai, lanjut buat tabel guru.
+
+CREATE TABLE guru ( 
+  id INT AUTO_INCREMENT PRIMARY KEY, 
+  nama VARCHAR(100), 
+  nip VARCHAR(20), 
+  mata_pelajaran VARCHAR(100)
+);
+
+Jika sudah, lalu isi folder models (Guru.php), controller (GuruControllers.php) dan views (guru list dan guru form) dengan coding untuk CRUD tabel guru. Kodingnya copy dari siswa, dan dimodifikasi sesuai tabel guru.
