@@ -1,1 +1,27 @@
-
+<?php foreach ($pinjams as $index => $pinjam): ?>
+<tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white"><?= $index + 1 ?></td>
+    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['nama_petugas']) ?></td>
+    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['nama_anggota']) ?></td>
+    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['judul']) ?></td>
+    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['tanggal_pinjam']) ?></td>
+    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['tanggal_kembali']) ?></td>
+    <td class="px-6 py-4">
+        <span class="px-3 py-1 text-xs font-medium rounded-full 
+            <?php 
+                if ($pinjam['status'] == 'Dipinjam') echo 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
+                elseif ($pinjam['status'] == 'Kembali') echo 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
+                else echo 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300';
+            ?>
+        ">
+            <?= htmlspecialchars($pinjam['status']) ?>
+        </span>
+    </td>
+    <td class="px-6 py-4 text-center">
+        <div class="flex items-center justify-center space-x-2">
+            <a href="index.php?page=pinjam&action=form&id=<?= $pinjam['id_peminjaman'] ?>" class="px-3 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-xs font-medium rounded-full hover:bg-green-200 dark:hover:bg-green-800 transition">Edit</a>
+            <a href="index.php?page=pinjam&action=delete&id=<?= $pinjam['id_peminjaman'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" class="px-3 py-1 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 text-xs font-medium rounded-full hover:bg-red-200 dark:hover:bg-red-800 transition">Hapus</a>
+        </div>
+    </td>
+</tr>
+<?php endforeach; ?>
