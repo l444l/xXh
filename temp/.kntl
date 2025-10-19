@@ -1,27 +1,138 @@
-<?php foreach ($pinjams as $index => $pinjam): ?>
-<tr class="bg-white dark:bg-gray-800 border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
-    <td class="px-6 py-4 font-medium text-gray-900 dark:text-white"><?= $index + 1 ?></td>
-    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['nama_petugas']) ?></td>
-    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['nama_anggota']) ?></td>
-    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['judul']) ?></td>
-    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['tanggal_pinjam']) ?></td>
-    <td class="px-6 py-4"><?= htmlspecialchars($pinjam['tanggal_kembali']) ?></td>
-    <td class="px-6 py-4">
-        <span class="px-3 py-1 text-xs font-medium rounded-full 
-            <?php 
-                if ($pinjam['status'] == 'Dipinjam') echo 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
-                elseif ($pinjam['status'] == 'Kembali') echo 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
-                else echo 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300';
-            ?>
-        ">
-            <?= htmlspecialchars($pinjam['status']) ?>
-        </span>
-    </td>
-    <td class="px-6 py-4 text-center">
-        <div class="flex items-center justify-center space-x-2">
-            <a href="index.php?page=pinjam&action=form&id=<?= $pinjam['id_peminjaman'] ?>" class="px-3 py-1 bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-xs font-medium rounded-full hover:bg-green-200 dark:hover:bg-green-800 transition">Edit</a>
-            <a href="index.php?page=pinjam&action=delete&id=<?= $pinjam['id_peminjaman'] ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')" class="px-3 py-1 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 text-xs font-medium rounded-full hover:bg-red-200 dark:hover:bg-red-800 transition">Hapus</a>
-        </div>
-    </td>
-</tr>
-<?php endforeach; ?>
+Tentu! Berikut ini prompt lengkap dan optimal yang bisa kamu gunakan untuk menghasilkan desain tampilan website yang modern dan profesional dari kode HTML yang kamu tunjukkan.
+Prompt ini dirancang agar bisa langsung digunakan di AI desain (seperti ChatGPT, v0, Midjourney, atau Figma AI Assistant) untuk membuat tampilan dan file style.css terpisah.
+
+
+---
+
+🎯 Prompt untuk Mendesain Ulang Website “Daftar Peminjaman”
+
+> Gunakan prompt ini secara langsung pada AI desainer atau saat membuat style.css
+
+
+
+
+---
+
+PROMPT:
+
+> Saya memiliki sebuah halaman web PHP yang menampilkan daftar peminjaman buku seperti berikut:
+
+<h2>Daftar Peminjaman</h2>  
+<a href="index.php?page=pinjam&action=form">+ Tambah Peminjaman</a>  
+
+<table border="1" cellpadding="8">  
+    <thead>  
+        <tr>  
+            <th>No</th>  
+            <th>Nama Petugas</th>  
+            <th>Nama Anggota</th>  
+            <th>Judul Buku</th>  
+            <th>Tanggal Pinjam</th>  
+            <th>Tanggal Kembali</th>  
+            <th>Status</th>  
+            <th>Aksi</th>  
+        </tr>  
+    </thead>  
+    <tbody>  
+        <!-- Data loop PHP -->
+    </tbody>  
+</table>
+
+Saya ingin kamu mendesain tampilan modern dan responsif untuk halaman ini menggunakan CSS eksternal (style.css) dengan gaya clean dan elegan seperti dashboard admin modern.
+
+🎨 Detail Desain yang Saya Inginkan:
+
+1. Header / Judul Halaman
+
+Buat judul "📚 Daftar Peminjaman Buku" dengan font besar, modern, dan sedikit bayangan.
+
+Tambahkan background halus di bagian header.
+
+
+
+2. Navigasi / Menu Bar
+
+Tambahkan menu navigasi horizontal di atas halaman dengan item:
+
+“🏠 Beranda”
+
+“📖 Data Buku”
+
+“👥 Data Anggota”
+
+“📦 Peminjaman”
+
+
+Navigasi menggunakan warna utama (misalnya biru atau hijau muda).
+
+Aktifkan efek hover dengan transisi halus.
+
+
+
+3. Tabel Data
+
+Gunakan tampilan tabel modern dengan:
+
+Header berwarna kontras dan teks putih.
+
+Baris dengan efek zebra (warna selang-seling).
+
+Efek hover saat kursor di atas baris.
+
+Sudut melengkung (border-radius).
+
+Bayangan lembut (box-shadow).
+
+
+Gunakan font sans-serif seperti Poppins atau Inter.
+
+
+
+4. Tombol
+
+Desain tombol “+ Tambah Peminjaman” dengan tampilan seperti tombol aksi (warna cerah, rounded, ada efek hover).
+
+Tombol “Edit” dan “Hapus” di kolom aksi memiliki warna berbeda:
+
+Edit: biru muda.
+
+Hapus: merah lembut dengan efek hover lebih gelap.
+
+
+
+
+5. Responsif
+
+Pastikan tabel dapat di-scroll horizontal pada layar kecil.
+
+Menu berubah menjadi dropdown atau icon hamburger saat diakses lewat mobile.
+
+
+
+6. Struktur File
+
+Pisahkan semua gaya ke dalam file style.css.
+
+Pastikan link CSS seperti ini:
+
+<link rel="stylesheet" href="style.css">
+
+
+
+7. Bonus (Opsional)
+
+Tambahkan animasi halus saat hover tombol atau saat tabel muncul (misalnya fade-in).
+
+
+
+
+💡 Tujuan akhir: tampilan seperti dashboard admin sederhana dengan palet warna lembut, bayangan halus, dan navigasi yang enak dilihat.
+
+
+
+
+---
+
+Apakah kamu ingin saya bantu lanjutkan dengan membuatkan langsung isi dari style.css berdasarkan prompt di atas (lengkap dan siap pakai)?
+Saya bisa tuliskan kode CSS-nya langsung untukmu.
+
